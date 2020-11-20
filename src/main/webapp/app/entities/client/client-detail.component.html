@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="client">
+            <h2><span jhiTranslate="apiArtisanApp.client.detail.title">Client</span> {{ client.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="apiArtisanApp.client.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ client.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{ client.prenom }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.login">Login</span></dt>
+                <dd>
+                    <span>{{ client.login }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.password">Password</span></dt>
+                <dd>
+                    <span>{{ client.password }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.langKey">Lang Key</span></dt>
+                <dd>
+                    <span>{{ client.langKey }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="client.photo">
+                        <a (click)="openFile(client.photoContentType, client.photo)">
+                            <img [src]="'data:' + client.photoContentType + ';base64,' + client.photo" style="max-width: 100%;" alt="client image"/>
+                        </a>
+                        {{ client.photoContentType }}, {{ byteSize(client.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.email">Email</span></dt>
+                <dd>
+                    <span>{{ client.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.telephone">Telephone</span></dt>
+                <dd>
+                    <span>{{ client.telephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ client.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.users">Users</span></dt>
+                <dd>
+                    {{ client.users?.login }}
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.client.localisation">Localisation</span></dt>
+                <dd>
+                    <div *ngIf="client.localisation">
+                        <a [routerLink]="['/localisation', client.localisation?.id, 'view']">{{ client.localisation?.adresse }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/client', client.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

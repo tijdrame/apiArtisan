@@ -1,0 +1,24 @@
+{
+  "apiArtisanApp": {
+    "etatCommande": {
+      "home": {
+        "title": "EtatCommandes",
+        "createLabel": "Créer un nouveau Etat Commande",
+        "createOrEditLabel": "Créer ou éditer un Etat Commande",
+        "notFound": "Aucun Etat Commande trouvé"
+      },
+      "created": "Un nouveau Etat Commande a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Etat Commande avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Etat Commande avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Etat Commande {{ id }} ?"
+      },
+      "detail": {
+        "title": "Etat Commande"
+      },
+      "libelle": "Libelle",
+      "code": "Code",
+      "deleted": "Deleted"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="etatCommande">
+            <h2><span jhiTranslate="apiArtisanApp.etatCommande.detail.title">Etat Commande</span> {{ etatCommande.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="apiArtisanApp.etatCommande.libelle">Libelle</span></dt>
+                <dd>
+                    <span>{{ etatCommande.libelle }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.etatCommande.code">Code</span></dt>
+                <dd>
+                    <span>{{ etatCommande.code }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.etatCommande.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ etatCommande.deleted }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/etat-commande', etatCommande.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

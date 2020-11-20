@@ -1,0 +1,24 @@
+{
+  "apiArtisanApp": {
+    "typeUser": {
+      "home": {
+        "title": "Type Users",
+        "createLabel": "Create a new Type User",
+        "createOrEditLabel": "Create or edit a Type User",
+        "notFound": "No Type Users found"
+      },
+      "created": "A new Type User is created with identifier {{ param }}",
+      "updated": "A Type User is updated with identifier {{ param }}",
+      "deleted": "A Type User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Type User {{ id }}?"
+      },
+      "detail": {
+        "title": "Type User"
+      },
+      "libelle": "Libelle",
+      "code": "Code",
+      "deleted": "Deleted"
+    }
+  }
+}

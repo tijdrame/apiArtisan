@@ -1,0 +1,89 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="artisan">
+            <h2><span jhiTranslate="apiArtisanApp.artisan.detail.title">Artisan</span> {{ artisan.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="apiArtisanApp.artisan.nom">Nom</span></dt>
+                <dd>
+                    <span>{{ artisan.nom }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.prenom">Prenom</span></dt>
+                <dd>
+                    <span>{{ artisan.prenom }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.login">Login</span></dt>
+                <dd>
+                    <span>{{ artisan.login }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.password">Password</span></dt>
+                <dd>
+                    <span>{{ artisan.password }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.langKey">Lang Key</span></dt>
+                <dd>
+                    <span>{{ artisan.langKey }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.photo">Photo</span></dt>
+                <dd>
+                    <div *ngIf="artisan.photo">
+                        <a (click)="openFile(artisan.photoContentType, artisan.photo)">
+                            <img [src]="'data:' + artisan.photoContentType + ';base64,' + artisan.photo" style="max-width: 100%;" alt="artisan image"/>
+                        </a>
+                        {{ artisan.photoContentType }}, {{ byteSize(artisan.photo) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.email">Email</span></dt>
+                <dd>
+                    <span>{{ artisan.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.telephone">Telephone</span></dt>
+                <dd>
+                    <span>{{ artisan.telephone }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.deleted">Deleted</span></dt>
+                <dd>
+                    <span>{{ artisan.deleted }}</span>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.typeUser">Type User</span></dt>
+                <dd>
+                    <div *ngIf="artisan.typeUser">
+                        <a [routerLink]="['/type-user', artisan.typeUser?.id, 'view']">{{ artisan.typeUser?.libelle }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.specialite">Specialite</span></dt>
+                <dd>
+                    <div *ngIf="artisan.specialite">
+                        <a [routerLink]="['/specialite', artisan.specialite?.id, 'view']">{{ artisan.specialite?.libelle }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.localisation">Localisation</span></dt>
+                <dd>
+                    <div *ngIf="artisan.localisation">
+                        <a [routerLink]="['/localisation', artisan.localisation?.id, 'view']">{{ artisan.localisation?.adresse }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="apiArtisanApp.artisan.user">User</span></dt>
+                <dd>
+                    {{ artisan.user?.login }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/artisan', artisan.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

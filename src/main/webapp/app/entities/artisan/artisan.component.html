@@ -1,0 +1,114 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="apiArtisanApp.artisan.home.title">Artisans</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-artisan" [routerLink]="['/artisan/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="apiArtisanApp.artisan.home.createLabel">
+            Create a new Artisan
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="artisans?.length === 0">
+        <span jhiTranslate="apiArtisanApp.artisan.home.notFound">No artisans found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="artisans && artisans.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nom"><span jhiTranslate="apiArtisanApp.artisan.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="prenom"><span jhiTranslate="apiArtisanApp.artisan.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="login"><span jhiTranslate="apiArtisanApp.artisan.login">Login</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="password"><span jhiTranslate="apiArtisanApp.artisan.password">Password</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="langKey"><span jhiTranslate="apiArtisanApp.artisan.langKey">Lang Key</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="photo"><span jhiTranslate="apiArtisanApp.artisan.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="apiArtisanApp.artisan.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="apiArtisanApp.artisan.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="apiArtisanApp.artisan.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="typeUser.libelle"><span jhiTranslate="apiArtisanApp.artisan.typeUser">Type User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="specialite.libelle"><span jhiTranslate="apiArtisanApp.artisan.specialite">Specialite</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="localisation.adresse"><span jhiTranslate="apiArtisanApp.artisan.localisation">Localisation</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="apiArtisanApp.artisan.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let artisan of artisans ;trackBy: trackId">
+                    <td><a [routerLink]="['/artisan', artisan.id, 'view']">{{ artisan.id }}</a></td>
+                    <td>{{ artisan.nom }}</td>
+                    <td>{{ artisan.prenom }}</td>
+                    <td>{{ artisan.login }}</td>
+                    <td>{{ artisan.password }}</td>
+                    <td>{{ artisan.langKey }}</td>
+                    <td>
+                        <a *ngIf="artisan.photo" (click)="openFile(artisan.photoContentType, artisan.photo)">
+                            <img [src]="'data:' + artisan.photoContentType + ';base64,' + artisan.photo" style="max-height: 30px;" alt="artisan image"/>
+                        </a>
+                        <span *ngIf="artisan.photo">{{ artisan.photoContentType }}, {{ byteSize(artisan.photo) }}</span>
+                    </td>
+                    <td>{{ artisan.email }}</td>
+                    <td>{{ artisan.telephone }}</td>
+                    <td>{{ artisan.deleted }}</td>
+                    <td>
+                        <div *ngIf="artisan.typeUser">
+                            <a [routerLink]="['/type-user', artisan.typeUser?.id, 'view']" >{{ artisan.typeUser?.libelle }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="artisan.specialite">
+                            <a [routerLink]="['/specialite', artisan.specialite?.id, 'view']" >{{ artisan.specialite?.libelle }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="artisan.localisation">
+                            <a [routerLink]="['/localisation', artisan.localisation?.id, 'view']" >{{ artisan.localisation?.adresse }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        {{ artisan.user?.login }}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/artisan', artisan.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/artisan', artisan.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(artisan)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="artisans && artisans.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

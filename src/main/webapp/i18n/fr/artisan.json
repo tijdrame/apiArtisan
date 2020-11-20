@@ -1,0 +1,34 @@
+{
+  "apiArtisanApp": {
+    "artisan": {
+      "home": {
+        "title": "Artisans",
+        "createLabel": "Créer un nouveau Artisan",
+        "createOrEditLabel": "Créer ou éditer un Artisan",
+        "notFound": "Aucun Artisan trouvé"
+      },
+      "created": "Un nouveau Artisan a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Artisan avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Artisan avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Artisan {{ id }} ?"
+      },
+      "detail": {
+        "title": "Artisan"
+      },
+      "nom": "Nom",
+      "prenom": "Prenom",
+      "login": "Login",
+      "password": "Password",
+      "langKey": "Lang Key",
+      "photo": "Photo",
+      "email": "Email",
+      "telephone": "Telephone",
+      "deleted": "Deleted",
+      "typeUser": "Type User",
+      "specialite": "Specialite",
+      "localisation": "Localisation",
+      "user": "User"
+    }
+  }
+}
