@@ -40,9 +40,6 @@ public class ArtisanResourceIT {
     private static final String DEFAULT_LOGIN = "AAAAAAAAAA";
     private static final String UPDATED_LOGIN = "BBBBBBBBBB";
 
-    private static final String DEFAULT_PASSWORD = "AAAAAAAAAA";
-    private static final String UPDATED_PASSWORD = "BBBBBBBBBB";
-
     private static final String DEFAULT_LANG_KEY = "AAAAAAAAAA";
     private static final String UPDATED_LANG_KEY = "BBBBBBBBBB";
 
@@ -85,7 +82,6 @@ public class ArtisanResourceIT {
             .nom(DEFAULT_NOM)
             .prenom(DEFAULT_PRENOM)
             .login(DEFAULT_LOGIN)
-            .password(DEFAULT_PASSWORD)
             .langKey(DEFAULT_LANG_KEY)
             .photo(DEFAULT_PHOTO)
             .photoContentType(DEFAULT_PHOTO_CONTENT_TYPE)
@@ -105,7 +101,6 @@ public class ArtisanResourceIT {
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .login(UPDATED_LOGIN)
-            .password(UPDATED_PASSWORD)
             .langKey(UPDATED_LANG_KEY)
             .photo(UPDATED_PHOTO)
             .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
@@ -137,7 +132,6 @@ public class ArtisanResourceIT {
         assertThat(testArtisan.getNom()).isEqualTo(DEFAULT_NOM);
         assertThat(testArtisan.getPrenom()).isEqualTo(DEFAULT_PRENOM);
         assertThat(testArtisan.getLogin()).isEqualTo(DEFAULT_LOGIN);
-        assertThat(testArtisan.getPassword()).isEqualTo(DEFAULT_PASSWORD);
         assertThat(testArtisan.getLangKey()).isEqualTo(DEFAULT_LANG_KEY);
         assertThat(testArtisan.getPhoto()).isEqualTo(DEFAULT_PHOTO);
         assertThat(testArtisan.getPhotoContentType()).isEqualTo(DEFAULT_PHOTO_CONTENT_TYPE);
@@ -206,25 +200,6 @@ public class ArtisanResourceIT {
 
     @Test
     @Transactional
-    public void checkPasswordIsRequired() throws Exception {
-        int databaseSizeBeforeTest = artisanRepository.findAll().size();
-        // set the field null
-        artisan.setPassword(null);
-
-        // Create the Artisan, which fails.
-
-
-        restArtisanMockMvc.perform(post("/api/artisans")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(artisan)))
-            .andExpect(status().isBadRequest());
-
-        List<Artisan> artisanList = artisanRepository.findAll();
-        assertThat(artisanList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllArtisans() throws Exception {
         // Initialize the database
         artisanRepository.saveAndFlush(artisan);
@@ -237,7 +212,6 @@ public class ArtisanResourceIT {
             .andExpect(jsonPath("$.[*].nom").value(hasItem(DEFAULT_NOM)))
             .andExpect(jsonPath("$.[*].prenom").value(hasItem(DEFAULT_PRENOM)))
             .andExpect(jsonPath("$.[*].login").value(hasItem(DEFAULT_LOGIN)))
-            .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD)))
             .andExpect(jsonPath("$.[*].langKey").value(hasItem(DEFAULT_LANG_KEY)))
             .andExpect(jsonPath("$.[*].photoContentType").value(hasItem(DEFAULT_PHOTO_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].photo").value(hasItem(Base64Utils.encodeToString(DEFAULT_PHOTO))))
@@ -260,7 +234,6 @@ public class ArtisanResourceIT {
             .andExpect(jsonPath("$.nom").value(DEFAULT_NOM))
             .andExpect(jsonPath("$.prenom").value(DEFAULT_PRENOM))
             .andExpect(jsonPath("$.login").value(DEFAULT_LOGIN))
-            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD))
             .andExpect(jsonPath("$.langKey").value(DEFAULT_LANG_KEY))
             .andExpect(jsonPath("$.photoContentType").value(DEFAULT_PHOTO_CONTENT_TYPE))
             .andExpect(jsonPath("$.photo").value(Base64Utils.encodeToString(DEFAULT_PHOTO)))
@@ -292,7 +265,6 @@ public class ArtisanResourceIT {
             .nom(UPDATED_NOM)
             .prenom(UPDATED_PRENOM)
             .login(UPDATED_LOGIN)
-            .password(UPDATED_PASSWORD)
             .langKey(UPDATED_LANG_KEY)
             .photo(UPDATED_PHOTO)
             .photoContentType(UPDATED_PHOTO_CONTENT_TYPE)
@@ -312,7 +284,6 @@ public class ArtisanResourceIT {
         assertThat(testArtisan.getNom()).isEqualTo(UPDATED_NOM);
         assertThat(testArtisan.getPrenom()).isEqualTo(UPDATED_PRENOM);
         assertThat(testArtisan.getLogin()).isEqualTo(UPDATED_LOGIN);
-        assertThat(testArtisan.getPassword()).isEqualTo(UPDATED_PASSWORD);
         assertThat(testArtisan.getLangKey()).isEqualTo(UPDATED_LANG_KEY);
         assertThat(testArtisan.getPhoto()).isEqualTo(UPDATED_PHOTO);
         assertThat(testArtisan.getPhotoContentType()).isEqualTo(UPDATED_PHOTO_CONTENT_TYPE);

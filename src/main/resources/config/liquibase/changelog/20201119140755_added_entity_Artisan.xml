@@ -24,9 +24,6 @@
             <column name="login" type="varchar(255)">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_artisan_login" />
             </column>
-            <column name="password" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
             <column name="lang_key" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
@@ -43,9 +40,6 @@
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_artisan_telephone" />
             </column>
             <column name="deleted" type="boolean">
-                <constraints nullable="true" />
-            </column>
-            <column name="type_user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <column name="specialite_id" type="bigint">
@@ -83,7 +77,6 @@
             <column name="nom" type="string"/>
             <column name="prenom" type="string"/>
             <column name="login" type="string"/>
-            <column name="password" type="string"/>
             <column name="lang_key" type="string"/>
             <column name="photo" type="blob"/>
             <column name="photo_content_type" type="string"/>

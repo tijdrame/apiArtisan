@@ -19,13 +19,11 @@
       "nom": "Nom",
       "prenom": "Prenom",
       "login": "Login",
-      "password": "Password",
       "langKey": "Lang Key",
       "photo": "Photo",
       "email": "Email",
       "telephone": "Telephone",
       "deleted": "Deleted",
-      "typeUser": "Type User",
       "specialite": "Specialite",
       "localisation": "Localisation",
       "user": "User"

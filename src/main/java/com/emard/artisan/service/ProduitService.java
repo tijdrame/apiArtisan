@@ -48,7 +48,10 @@ public class ProduitService {
     @Transactional(readOnly = true)
     public Page<Produit> findAll(Pageable pageable) {
         log.debug("Request to get all Produits");
-        return produitRepository.findByDeletedFalseOrderByLibelle(pageable);
+        Page<Produit> page =produitRepository.findByDeletedFalseOrderByLibelle(pageable);
+        //log.info("poto= [{}]",page.getContent().get(0).getPhotos().iterator().next().getPhoto());
+
+        return page;
     }
 
 

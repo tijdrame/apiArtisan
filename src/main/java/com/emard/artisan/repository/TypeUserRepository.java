@@ -15,4 +15,6 @@ import org.springframework.stereotype.Repository;
 public interface TypeUserRepository extends JpaRepository<TypeUser, Long> {
 
 	Page<TypeUser> findByDeletedFalseOrderByLibelle(Pageable pageable);
+
+	TypeUser findByCode(String codeClient);
 }

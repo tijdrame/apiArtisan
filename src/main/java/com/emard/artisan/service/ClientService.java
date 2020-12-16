@@ -1,7 +1,13 @@
 package com.emard.artisan.service;
 
+import com.emard.artisan.service.dto.UserDTO;
+import com.emard.artisan.service.utils.IConstantes;
+import com.emard.artisan.domain.Authority;
 import com.emard.artisan.domain.Client;
+import com.emard.artisan.domain.User;
 import com.emard.artisan.repository.ClientRepository;
+import com.emard.artisan.security.AuthoritiesConstants;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +29,16 @@ public class ClientService {
 
     private final ClientRepository clientRepository;
 
-    public ClientService(ClientRepository clientRepository) {
+    private final UserService userService;
+
+    private final MailService mailService;
+    //private final TypeUserService typeUserService;
+
+    public ClientService(ClientRepository clientRepository, UserService userService, MailService mailService) {
         this.clientRepository = clientRepository;
+        this.userService = userService;
+        this.mailService = mailService;
+        //this.typeUserService = typeUserService;
     }
 
     /**
@@ -36,6 +50,22 @@ public class ClientService {
     public Client save(Client client) {
         log.debug("Request to save Client : {}", client);
         client.deleted(false);
+        if(client.getId()==null) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setLogin(client.getLogin());
+            userDTO.setFirstName(client.getPrenom());
+            userDTO.setLastName(client.getNom());
+            userDTO.setEmail(client.getEmail());
+            User us = userService.createUser(userDTO);
+            Authority authority = new Authority();
+            authority.setName(AuthoritiesConstants.CLIENT);
+            us.getAuthorities().add(authority);
+            authority = new Authority();
+            authority.setName(AuthoritiesConstants.USER);
+            us.getAuthorities().add(authority);
+            client.users(us);
+            mailService.sendCreationEmail(us);
+        }
         return clientRepository.save(client);
     }
 

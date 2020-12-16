@@ -1,7 +1,12 @@
 package com.emard.artisan.service;
 
 import com.emard.artisan.domain.Artisan;
+import com.emard.artisan.domain.Authority;
+import com.emard.artisan.domain.User;
 import com.emard.artisan.repository.ArtisanRepository;
+import com.emard.artisan.security.AuthoritiesConstants;
+import com.emard.artisan.service.dto.UserDTO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +28,14 @@ public class ArtisanService {
 
     private final ArtisanRepository artisanRepository;
 
-    public ArtisanService(ArtisanRepository artisanRepository) {
+    private final UserService userService;
+
+    private final MailService mailService;
+
+    public ArtisanService(ArtisanRepository artisanRepository, UserService userService, MailService mailService) {
         this.artisanRepository = artisanRepository;
+        this.userService = userService;
+        this.mailService = mailService;
     }
 
     /**
@@ -36,6 +47,22 @@ public class ArtisanService {
     public Artisan save(Artisan artisan) {
         log.debug("Request to save Artisan : {}", artisan);
         artisan.deleted(false);
+        if(artisan.getId()==null) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setLogin(artisan.getLogin());
+            userDTO.setFirstName(artisan.getPrenom());
+            userDTO.setLastName(artisan.getNom());
+            userDTO.setEmail(artisan.getEmail());
+            User us = userService.createUser(userDTO);
+            Authority authority = new Authority();
+            authority.setName(AuthoritiesConstants.ARTISAN);
+            us.getAuthorities().add(authority);
+            authority = new Authority();
+            authority.setName(AuthoritiesConstants.USER);
+            us.getAuthorities().add(authority);
+            artisan.user(us);
+            mailService.sendCreationEmail(us);
+        }
         return artisanRepository.save(artisan);
     }
 

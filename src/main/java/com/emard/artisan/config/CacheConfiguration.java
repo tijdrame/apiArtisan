@@ -58,6 +58,7 @@ public class CacheConfiguration {
             createCache(cm, com.emard.artisan.domain.Produit.class.getName());
             createCache(cm, com.emard.artisan.domain.Produit.class.getName() + ".photos");
             createCache(cm, com.emard.artisan.domain.Commande.class.getName());
+            createCache(cm, com.emard.artisan.domain.UserProduit.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

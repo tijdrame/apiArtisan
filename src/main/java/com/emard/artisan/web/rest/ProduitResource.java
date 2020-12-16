@@ -1,5 +1,6 @@
 package com.emard.artisan.web.rest;
 
+import com.emard.artisan.domain.Photo;
 import com.emard.artisan.domain.Produit;
 import com.emard.artisan.service.ProduitService;
 import com.emard.artisan.web.rest.errors.BadRequestAlertException;
@@ -94,6 +95,13 @@ public class ProduitResource {
     public ResponseEntity<List<Produit>> getAllProduits(Pageable pageable) {
         log.debug("REST request to get a page of Produits");
         Page<Produit> page = produitService.findAll(pageable);
+        /*for (Produit produit : page) {
+            log.info("pro= [{}]",produit.toString());
+            for (Photo it : produit.getPhotos()) {
+            log.info("foto= [{}]",it.getPhoto());
+                
+            }
+        }*/
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

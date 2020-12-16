@@ -51,7 +51,7 @@ public class Produit implements Serializable {
     @JsonIgnoreProperties(value = "produits", allowSetters = true)
     private Artisan artisan;
 
-    @OneToMany(mappedBy = "produit")
+    @OneToMany(mappedBy = "produit", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Photo> photos = new HashSet<>();
 

@@ -20,10 +20,6 @@
                 <dd>
                     <span>{{ artisan.login }}</span>
                 </dd>
-                <dt><span jhiTranslate="apiArtisanApp.artisan.password">Password</span></dt>
-                <dd>
-                    <span>{{ artisan.password }}</span>
-                </dd>
                 <dt><span jhiTranslate="apiArtisanApp.artisan.langKey">Lang Key</span></dt>
                 <dd>
                     <span>{{ artisan.langKey }}</span>
@@ -48,12 +44,6 @@
                 <dt><span jhiTranslate="apiArtisanApp.artisan.deleted">Deleted</span></dt>
                 <dd>
                     <span>{{ artisan.deleted }}</span>
-                </dd>
-                <dt><span jhiTranslate="apiArtisanApp.artisan.typeUser">Type User</span></dt>
-                <dd>
-                    <div *ngIf="artisan.typeUser">
-                        <a [routerLink]="['/type-user', artisan.typeUser?.id, 'view']">{{ artisan.typeUser?.libelle }}</a>
-                    </div>
                 </dd>
                 <dt><span jhiTranslate="apiArtisanApp.artisan.specialite">Specialite</span></dt>
                 <dd>

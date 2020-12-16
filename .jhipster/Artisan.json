@@ -3,13 +3,6 @@
   "clientRootFolder": "",
   "relationships": [
     {
-      "relationshipName": "typeUser",
-      "otherEntityName": "typeUser",
-      "relationshipType": "many-to-one",
-      "otherEntityField": "libelle",
-      "otherEntityRelationshipName": "artisan"
-    },
-    {
       "relationshipName": "specialite",
       "otherEntityName": "specialite",
       "relationshipType": "many-to-one",
@@ -47,11 +40,6 @@
       "fieldName": "login",
       "fieldType": "String",
       "fieldValidateRules": ["unique"]
-    },
-    {
-      "fieldName": "password",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "langKey",

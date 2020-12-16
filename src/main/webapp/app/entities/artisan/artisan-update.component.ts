@@ -9,8 +9,6 @@ import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } 
 import { IArtisan, Artisan } from 'app/shared/model/artisan.model';
 import { ArtisanService } from './artisan.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
-import { ITypeUser } from 'app/shared/model/type-user.model';
-import { TypeUserService } from 'app/entities/type-user/type-user.service';
 import { ISpecialite } from 'app/shared/model/specialite.model';
 import { SpecialiteService } from 'app/entities/specialite/specialite.service';
 import { ILocalisation } from 'app/shared/model/localisation.model';
@@ -18,7 +16,7 @@ import { LocalisationService } from 'app/entities/localisation/localisation.serv
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 
-type SelectableEntity = ITypeUser | ISpecialite | ILocalisation | IUser;
+type SelectableEntity = ISpecialite | ILocalisation | IUser;
 
 @Component({
   selector: 'jhi-artisan-update',
@@ -26,7 +24,6 @@ type SelectableEntity = ITypeUser | ISpecialite | ILocalisation | IUser;
 })
 export class ArtisanUpdateComponent implements OnInit {
   isSaving = false;
-  typeusers: ITypeUser[] = [];
   specialites: ISpecialite[] = [];
   localisations: ILocalisation[] = [];
   users: IUser[] = [];
@@ -36,14 +33,12 @@ export class ArtisanUpdateComponent implements OnInit {
     nom: [null, [Validators.required]],
     prenom: [null, [Validators.required]],
     login: [null, []],
-    password: [null, [Validators.required]],
     langKey: [],
     photo: [],
     photoContentType: [],
     email: [null, []],
     telephone: [null, []],
     deleted: [],
-    typeUser: [],
     specialite: [],
     localisation: [],
     user: [],
@@ -53,7 +48,6 @@ export class ArtisanUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected artisanService: ArtisanService,
-    protected typeUserService: TypeUserService,
     protected specialiteService: SpecialiteService,
     protected localisationService: LocalisationService,
     protected userService: UserService,
@@ -65,8 +59,6 @@ export class ArtisanUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ artisan }) => {
       this.updateForm(artisan);
-
-      this.typeUserService.query().subscribe((res: HttpResponse<ITypeUser[]>) => (this.typeusers = res.body || []));
 
       this.specialiteService.query().subscribe((res: HttpResponse<ISpecialite[]>) => (this.specialites = res.body || []));
 
@@ -82,14 +74,12 @@ export class ArtisanUpdateComponent implements OnInit {
       nom: artisan.nom,
       prenom: artisan.prenom,
       login: artisan.login,
-      password: artisan.password,
       langKey: artisan.langKey,
       photo: artisan.photo,
       photoContentType: artisan.photoContentType,
       email: artisan.email,
       telephone: artisan.telephone,
       deleted: artisan.deleted,
-      typeUser: artisan.typeUser,
       specialite: artisan.specialite,
       localisation: artisan.localisation,
       user: artisan.user,
@@ -143,14 +133,12 @@ export class ArtisanUpdateComponent implements OnInit {
       nom: this.editForm.get(['nom'])!.value,
       prenom: this.editForm.get(['prenom'])!.value,
       login: this.editForm.get(['login'])!.value,
-      password: this.editForm.get(['password'])!.value,
       langKey: this.editForm.get(['langKey'])!.value,
       photoContentType: this.editForm.get(['photoContentType'])!.value,
       photo: this.editForm.get(['photo'])!.value,
       email: this.editForm.get(['email'])!.value,
       telephone: this.editForm.get(['telephone'])!.value,
       deleted: this.editForm.get(['deleted'])!.value,
-      typeUser: this.editForm.get(['typeUser'])!.value,
       specialite: this.editForm.get(['specialite'])!.value,
       localisation: this.editForm.get(['localisation'])!.value,
       user: this.editForm.get(['user'])!.value,

@@ -26,13 +26,11 @@
                     <th scope="col"  jhiSortBy="nom"><span jhiTranslate="apiArtisanApp.artisan.nom">Nom</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="prenom"><span jhiTranslate="apiArtisanApp.artisan.prenom">Prenom</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="login"><span jhiTranslate="apiArtisanApp.artisan.login">Login</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="password"><span jhiTranslate="apiArtisanApp.artisan.password">Password</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="langKey"><span jhiTranslate="apiArtisanApp.artisan.langKey">Lang Key</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="photo"><span jhiTranslate="apiArtisanApp.artisan.photo">Photo</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="email"><span jhiTranslate="apiArtisanApp.artisan.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="telephone"><span jhiTranslate="apiArtisanApp.artisan.telephone">Telephone</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="apiArtisanApp.artisan.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="typeUser.libelle"><span jhiTranslate="apiArtisanApp.artisan.typeUser">Type User</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="specialite.libelle"><span jhiTranslate="apiArtisanApp.artisan.specialite">Specialite</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="localisation.adresse"><span jhiTranslate="apiArtisanApp.artisan.localisation">Localisation</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="apiArtisanApp.artisan.user">User</span> <fa-icon icon="sort"></fa-icon></th>
@@ -45,7 +43,6 @@
                     <td>{{ artisan.nom }}</td>
                     <td>{{ artisan.prenom }}</td>
                     <td>{{ artisan.login }}</td>
-                    <td>{{ artisan.password }}</td>
                     <td>{{ artisan.langKey }}</td>
                     <td>
                         <a *ngIf="artisan.photo" (click)="openFile(artisan.photoContentType, artisan.photo)">
@@ -56,11 +53,6 @@
                     <td>{{ artisan.email }}</td>
                     <td>{{ artisan.telephone }}</td>
                     <td>{{ artisan.deleted }}</td>
-                    <td>
-                        <div *ngIf="artisan.typeUser">
-                            <a [routerLink]="['/type-user', artisan.typeUser?.id, 'view']" >{{ artisan.typeUser?.libelle }}</a>
-                        </div>
-                    </td>
                     <td>
                         <div *ngIf="artisan.specialite">
                             <a [routerLink]="['/specialite', artisan.specialite?.id, 'view']" >{{ artisan.specialite?.libelle }}</a>

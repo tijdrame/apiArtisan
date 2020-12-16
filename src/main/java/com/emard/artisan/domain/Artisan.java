@@ -36,10 +36,6 @@ public class Artisan implements Serializable {
     @Column(name = "login", unique = true)
     private String login;
 
-    @NotNull
-    @Column(name = "password", nullable = false)
-    private String password;
-
     @Column(name = "lang_key")
     private String langKey;
 
@@ -60,10 +56,6 @@ public class Artisan implements Serializable {
 
     @Column(name = "deleted")
     private Boolean deleted;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "artisans", allowSetters = true)
-    private TypeUser typeUser;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "artisans", allowSetters = true)
@@ -123,19 +115,6 @@ public class Artisan implements Serializable {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Artisan password(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getLangKey() {
@@ -216,19 +195,6 @@ public class Artisan implements Serializable {
         this.deleted = deleted;
     }
 
-    public TypeUser getTypeUser() {
-        return typeUser;
-    }
-
-    public Artisan typeUser(TypeUser typeUser) {
-        this.typeUser = typeUser;
-        return this;
-    }
-
-    public void setTypeUser(TypeUser typeUser) {
-        this.typeUser = typeUser;
-    }
-
     public Specialite getSpecialite() {
         return specialite;
     }
@@ -293,7 +259,6 @@ public class Artisan implements Serializable {
             ", nom='" + getNom() + "'" +
             ", prenom='" + getPrenom() + "'" +
             ", login='" + getLogin() + "'" +
-            ", password='" + getPassword() + "'" +
             ", langKey='" + getLangKey() + "'" +
             ", photo='" + getPhoto() + "'" +
             ", photoContentType='" + getPhotoContentType() + "'" +

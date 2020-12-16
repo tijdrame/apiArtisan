@@ -20,19 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ArtisanService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Artisan(
-        0,
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        'image/png',
-        'AAAAAAA',
-        'AAAAAAA',
-        'AAAAAAA',
-        false
-      );
+      elemDefault = new Artisan(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA', 'AAAAAAA', false);
     });
 
     describe('Service methods', () => {
@@ -69,7 +57,6 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             prenom: 'BBBBBB',
             login: 'BBBBBB',
-            password: 'BBBBBB',
             langKey: 'BBBBBB',
             photo: 'BBBBBB',
             email: 'BBBBBB',
@@ -94,7 +81,6 @@ describe('Service Tests', () => {
             nom: 'BBBBBB',
             prenom: 'BBBBBB',
             login: 'BBBBBB',
-            password: 'BBBBBB',
             langKey: 'BBBBBB',
             photo: 'BBBBBB',
             email: 'BBBBBB',

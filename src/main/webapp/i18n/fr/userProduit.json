@@ -1,0 +1,24 @@
+{
+  "apiArtisanApp": {
+    "userProduit": {
+      "home": {
+        "title": "UserProduits",
+        "createLabel": "Créer un nouveau User Produit",
+        "createOrEditLabel": "Créer ou éditer un User Produit",
+        "notFound": "Aucun User Produit trouvé"
+      },
+      "created": "Un nouveau User Produit a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Produit avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Produit avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le User Produit {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Produit"
+      },
+      "deleted": "Deleted",
+      "user": "User",
+      "produit": "Produit"
+    }
+  }
+}

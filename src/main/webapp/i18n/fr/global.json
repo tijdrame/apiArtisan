@@ -16,6 +16,7 @@
         "client": "Client",
         "produit": "Produit",
         "commande": "Commande",
+        "userProduit": "User Produit",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

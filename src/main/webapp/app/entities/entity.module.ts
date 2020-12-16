@@ -40,6 +40,10 @@ import { RouterModule } from '@angular/router';
         path: 'commande',
         loadChildren: () => import('./commande/commande.module').then(m => m.ApiArtisanCommandeModule),
       },
+      {
+        path: 'user-produit',
+        loadChildren: () => import('./user-produit/user-produit.module').then(m => m.ApiArtisanUserProduitModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

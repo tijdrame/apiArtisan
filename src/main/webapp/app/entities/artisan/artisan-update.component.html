@@ -44,18 +44,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.password" for="field_password">Password</label>
-                    <input type="text" class="form-control" name="password" id="field_password"
-                           formControlName="password"/>
-                    <div *ngIf="editForm.get('password')!.invalid && (editForm.get('password')!.dirty || editForm.get('password')!.touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('password')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.langKey" for="field_langKey">Lang Key</label>
                     <input type="text" class="form-control" name="langKey" id="field_langKey"
                            formControlName="langKey"/>
@@ -95,19 +83,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.deleted" for="field_deleted">Deleted</label>
-                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
-                           formControlName="deleted"/>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.typeUser" for="field_typeUser">Type User</label>
-                    <select class="form-control" id="field_typeUser" name="typeUser" formControlName="typeUser">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="typeUserOption.id === editForm.get('typeUser')!.value?.id ? editForm.get('typeUser')!.value : typeUserOption" *ngFor="let typeUserOption of typeusers; trackBy: trackById">{{ typeUserOption.libelle }}</option>
-                    </select>
-                </div>
+                
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.specialite" for="field_specialite">Specialite</label>
@@ -117,21 +93,13 @@
                     </select>
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.localisation" for="field_localisation">Localisation</label>
                     <select class="form-control" id="field_localisation" name="localisation" formControlName="localisation">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="localisationOption.id === editForm.get('localisation')!.value?.id ? editForm.get('localisation')!.value : localisationOption" *ngFor="let localisationOption of localisations; trackBy: trackById">{{ localisationOption.adresse }}</option>
                     </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="apiArtisanApp.artisan.user" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="user">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
-                    </select>
-                </div>
+                </div> -->
             </div>
 
             <div>

@@ -75,4 +75,8 @@ public class TypeUserService {
         if(typeUser.isPresent()) typeUser.get().deleted(true);
         typeUserRepository.deleteById(id);
     }
+
+	public TypeUser findByCode(String codeClient) {
+		return typeUserRepository.findByCode(codeClient);
+	}
 }
