@@ -1,6 +1,7 @@
 package com.emard.artisan.service;
 
 import com.emard.artisan.domain.Produit;
+import com.emard.artisan.domain.Specialite;
 import com.emard.artisan.repository.ProduitRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,5 +78,12 @@ public class ProduitService {
         Optional<Produit> produit = produitRepository.findById(id);
         if(produit.isPresent()) produit.get().deleted(true);
         produitRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Optional<Produit>> findBySpeciality(Specialite sp, Pageable pageable) {
+        log.debug("Request to get Produits by speciality");
+        Page<Optional<Produit>> page =produitRepository.findByArtisan_Specialite(sp, pageable);
+        return page;
     }
 }

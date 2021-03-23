@@ -1,11 +1,11 @@
-id;libelle;code;having_genre;deleted
-1;flexibility Frozen service-desk;payment;true;false
-2;Connecticut Manager TCP;Tunnel payment;false;true
-3;Generic;Senior auxiliary;true;false
-4;payment PNG;red AGP;true;false
-5;parsing;deposit generate;true;true
-6;copying schemas;program Progressive;true;false
-7;mobile;Oklahoma magenta driver;true;false
-8;Senegal redundant;Maryland;true;false
-9;Hong Kong Dollar Wisconsin;Cotton interface Soft;false;true
-10;Montenegro Administrator;AGP;true;true
+id;libelle;code;having_genre;deleted;avatar;avatar_content_type
+1;flexibility Frozen service-desk;payment;true;false;../fake-data/blob/hipster.png;image/png
+2;Connecticut Manager TCP;Tunnel payment;false;true;../fake-data/blob/hipster.png;image/png
+3;Generic;Senior auxiliary;true;false;../fake-data/blob/hipster.png;image/png
+4;payment PNG;red AGP;true;false;../fake-data/blob/hipster.png;image/png
+5;parsing;deposit generate;true;true;../fake-data/blob/hipster.png;image/png
+6;copying schemas;program Progressive;true;false;../fake-data/blob/hipster.png;image/png
+7;mobile;Oklahoma magenta driver;true;false;../fake-data/blob/hipster.png;image/png
+8;Senegal redundant;Maryland;true;false;../fake-data/blob/hipster.png;image/png
+9;Hong Kong Dollar Wisconsin;Cotton interface Soft;false;true;../fake-data/blob/hipster.png;image/png
+10;Montenegro Administrator;AGP;true;true;../fake-data/blob/hipster.png;image/png

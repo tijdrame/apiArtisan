@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(SpecialiteService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Specialite(0, 'AAAAAAA', 'AAAAAAA', false, false);
+      elemDefault = new Specialite(0, 'AAAAAAA', 'AAAAAAA', false, false, 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -58,6 +58,7 @@ describe('Service Tests', () => {
             code: 'BBBBBB',
             havingGenre: true,
             deleted: true,
+            avatar: 'BBBBBB',
           },
           elemDefault
         );
@@ -78,6 +79,7 @@ describe('Service Tests', () => {
             code: 'BBBBBB',
             havingGenre: true,
             deleted: true,
+            avatar: 'BBBBBB',
           },
           elemDefault
         );

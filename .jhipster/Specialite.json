@@ -20,6 +20,11 @@
     {
       "fieldName": "deleted",
       "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "avatar",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
     }
   ],
   "changelogDate": "20201119105645",

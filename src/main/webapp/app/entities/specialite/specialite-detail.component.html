@@ -24,6 +24,15 @@
                 <dd>
                     <span>{{ specialite.deleted }}</span>
                 </dd>
+                <dt><span jhiTranslate="apiArtisanApp.specialite.avatar">Avatar</span></dt>
+                <dd>
+                    <div *ngIf="specialite.avatar">
+                        <a (click)="openFile(specialite.avatarContentType, specialite.avatar)">
+                            <img [src]="'data:' + specialite.avatarContentType + ';base64,' + specialite.avatar" style="max-width: 100%;" alt="specialite image"/>
+                        </a>
+                        {{ specialite.avatarContentType }}, {{ byteSize(specialite.avatar) }}
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

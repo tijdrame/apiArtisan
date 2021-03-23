@@ -1,0 +1,46 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="tijdr (generated)" id="1616422334373-12">
+        <addColumn tableName="specialite">
+            <column name="avatar" type="bytea"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-13">
+        <addColumn tableName="specialite">
+            <column name="avatar_content_type" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <!-- <changeSet author="tijdr (generated)" id="1616422334373-1">
+        <alterSequence sequenceName="artisan_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-2">
+        <alterSequence sequenceName="client_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-3">
+        <alterSequence sequenceName="cmde_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-4">
+        <alterSequence sequenceName="etat_cmde_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-5">
+        <alterSequence sequenceName="localize_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-6">
+        <alterSequence sequenceName="photo_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-7">
+        <alterSequence sequenceName="produit_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-8">
+        <alterSequence sequenceName="sequence_generator"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-9">
+        <alterSequence sequenceName="spec_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-10">
+        <alterSequence sequenceName="type_us_id_seq"/>
+    </changeSet>
+    <changeSet author="tijdr (generated)" id="1616422334373-11">
+        <alterSequence sequenceName="user_id_seq"/>
+    </changeSet> -->
+</databaseChangeLog>

@@ -22,21 +22,28 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <!-- <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th> -->
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="libelle"><span jhiTranslate="apiArtisanApp.specialite.libelle">Libelle</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="code"><span jhiTranslate="apiArtisanApp.specialite.code">Code</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="havingGenre"><span jhiTranslate="apiArtisanApp.specialite.havingGenre">Having Genre</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="deleted"><span jhiTranslate="apiArtisanApp.specialite.deleted">Deleted</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="avatar"><span jhiTranslate="apiArtisanApp.specialite.avatar">Avatar</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let specialite of specialites ;trackBy: trackId">
-                    <!-- <td><a [routerLink]="['/specialite', specialite.id, 'view']">{{ specialite.id }}</a></td> -->
+                    <td><a [routerLink]="['/specialite', specialite.id, 'view']">{{ specialite.id }}</a></td>
                     <td>{{ specialite.libelle }}</td>
                     <td>{{ specialite.code }}</td>
-                    <td>{{ specialite.havingGenre ? 'Oui' : 'Non' }}</td>
-                    <td>{{ specialite.deleted ? 'Oui' : 'Non' }}</td>
+                    <td>{{ specialite.havingGenre }}</td>
+                    <td>{{ specialite.deleted }}</td>
+                    <td>
+                        <a *ngIf="specialite.avatar" (click)="openFile(specialite.avatarContentType, specialite.avatar)">
+                            <img [src]="'data:' + specialite.avatarContentType + ';base64,' + specialite.avatar" style="max-height: 30px;" alt="specialite image"/>
+                        </a>
+                        <span *ngIf="specialite.avatar">{{ specialite.avatarContentType }}, {{ byteSize(specialite.avatar) }}</span>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

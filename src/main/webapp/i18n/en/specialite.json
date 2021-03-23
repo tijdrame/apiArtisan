@@ -19,7 +19,8 @@
       "libelle": "Libelle",
       "code": "Code",
       "havingGenre": "Having Genre",
-      "deleted": "Deleted"
+      "deleted": "Deleted",
+      "avatar": "Avatar"
     }
   }
 }

@@ -37,6 +37,13 @@ public class Specialite implements Serializable {
     @Column(name = "deleted")
     private Boolean deleted;
 
+    @Lob
+    @Column(name = "avatar")
+    private byte[] avatar;
+
+    @Column(name = "avatar_content_type")
+    private String avatarContentType;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -97,6 +104,32 @@ public class Specialite implements Serializable {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public Specialite avatar(byte[] avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getAvatarContentType() {
+        return avatarContentType;
+    }
+
+    public Specialite avatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+        return this;
+    }
+
+    public void setAvatarContentType(String avatarContentType) {
+        this.avatarContentType = avatarContentType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -124,6 +157,8 @@ public class Specialite implements Serializable {
             ", code='" + getCode() + "'" +
             ", havingGenre='" + isHavingGenre() + "'" +
             ", deleted='" + isDeleted() + "'" +
+            ", avatar='" + getAvatar() + "'" +
+            ", avatarContentType='" + getAvatarContentType() + "'" +
             "}";
     }
 }

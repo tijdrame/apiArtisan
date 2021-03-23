@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { JhiDataUtils, JhiFileLoadError, JhiEventManager, JhiEventWithContent } from 'ng-jhipster';
 
 import { ISpecialite, Specialite } from 'app/shared/model/specialite.model';
 import { SpecialiteService } from './specialite.service';
+import { AlertError } from 'app/shared/alert/alert-error.model';
 
 @Component({
   selector: 'jhi-specialite-update',
@@ -21,9 +23,18 @@ export class SpecialiteUpdateComponent implements OnInit {
     code: [null, [Validators.required]],
     havingGenre: [],
     deleted: [],
+    avatar: [],
+    avatarContentType: [],
   });
 
-  constructor(protected specialiteService: SpecialiteService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected dataUtils: JhiDataUtils,
+    protected eventManager: JhiEventManager,
+    protected specialiteService: SpecialiteService,
+    protected elementRef: ElementRef,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ specialite }) => {
@@ -38,7 +49,35 @@ export class SpecialiteUpdateComponent implements OnInit {
       code: specialite.code,
       havingGenre: specialite.havingGenre,
       deleted: specialite.deleted,
+      avatar: specialite.avatar,
+      avatarContentType: specialite.avatarContentType,
     });
+  }
+
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
+  }
+
+  openFile(contentType: string, base64String: string): void {
+    this.dataUtils.openFile(contentType, base64String);
+  }
+
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe(null, (err: JhiFileLoadError) => {
+      this.eventManager.broadcast(
+        new JhiEventWithContent<AlertError>('apiArtisanApp.error', { ...err, key: 'error.file.' + err.key })
+      );
+    });
+  }
+
+  clearInputImage(field: string, fieldContentType: string, idInput: string): void {
+    this.editForm.patchValue({
+      [field]: null,
+      [fieldContentType]: null,
+    });
+    if (this.elementRef && idInput && this.elementRef.nativeElement.querySelector('#' + idInput)) {
+      this.elementRef.nativeElement.querySelector('#' + idInput).value = null;
+    }
   }
 
   previousState(): void {
@@ -63,6 +102,8 @@ export class SpecialiteUpdateComponent implements OnInit {
       code: this.editForm.get(['code'])!.value,
       havingGenre: this.editForm.get(['havingGenre'])!.value,
       deleted: this.editForm.get(['deleted'])!.value,
+      avatarContentType: this.editForm.get(['avatarContentType'])!.value,
+      avatar: this.editForm.get(['avatar'])!.value,
     };
   }
 

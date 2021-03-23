@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -42,6 +43,11 @@ public class SpecialiteResourceIT {
     private static final Boolean DEFAULT_DELETED = false;
     private static final Boolean UPDATED_DELETED = true;
 
+    private static final byte[] DEFAULT_AVATAR = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_AVATAR = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_AVATAR_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_AVATAR_CONTENT_TYPE = "image/png";
+
     @Autowired
     private SpecialiteRepository specialiteRepository;
 
@@ -67,7 +73,9 @@ public class SpecialiteResourceIT {
             .libelle(DEFAULT_LIBELLE)
             .code(DEFAULT_CODE)
             .havingGenre(DEFAULT_HAVING_GENRE)
-            .deleted(DEFAULT_DELETED);
+            .deleted(DEFAULT_DELETED)
+            .avatar(DEFAULT_AVATAR)
+            .avatarContentType(DEFAULT_AVATAR_CONTENT_TYPE);
         return specialite;
     }
     /**
@@ -81,7 +89,9 @@ public class SpecialiteResourceIT {
             .libelle(UPDATED_LIBELLE)
             .code(UPDATED_CODE)
             .havingGenre(UPDATED_HAVING_GENRE)
-            .deleted(UPDATED_DELETED);
+            .deleted(UPDATED_DELETED)
+            .avatar(UPDATED_AVATAR)
+            .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE);
         return specialite;
     }
 
@@ -108,6 +118,8 @@ public class SpecialiteResourceIT {
         assertThat(testSpecialite.getCode()).isEqualTo(DEFAULT_CODE);
         assertThat(testSpecialite.isHavingGenre()).isEqualTo(DEFAULT_HAVING_GENRE);
         assertThat(testSpecialite.isDeleted()).isEqualTo(DEFAULT_DELETED);
+        assertThat(testSpecialite.getAvatar()).isEqualTo(DEFAULT_AVATAR);
+        assertThat(testSpecialite.getAvatarContentType()).isEqualTo(DEFAULT_AVATAR_CONTENT_TYPE);
     }
 
     @Test
@@ -182,7 +194,9 @@ public class SpecialiteResourceIT {
             .andExpect(jsonPath("$.[*].libelle").value(hasItem(DEFAULT_LIBELLE)))
             .andExpect(jsonPath("$.[*].code").value(hasItem(DEFAULT_CODE)))
             .andExpect(jsonPath("$.[*].havingGenre").value(hasItem(DEFAULT_HAVING_GENRE.booleanValue())))
-            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].deleted").value(hasItem(DEFAULT_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].avatarContentType").value(hasItem(DEFAULT_AVATAR_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].avatar").value(hasItem(Base64Utils.encodeToString(DEFAULT_AVATAR))));
     }
     
     @Test
@@ -199,7 +213,9 @@ public class SpecialiteResourceIT {
             .andExpect(jsonPath("$.libelle").value(DEFAULT_LIBELLE))
             .andExpect(jsonPath("$.code").value(DEFAULT_CODE))
             .andExpect(jsonPath("$.havingGenre").value(DEFAULT_HAVING_GENRE.booleanValue()))
-            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()));
+            .andExpect(jsonPath("$.deleted").value(DEFAULT_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.avatarContentType").value(DEFAULT_AVATAR_CONTENT_TYPE))
+            .andExpect(jsonPath("$.avatar").value(Base64Utils.encodeToString(DEFAULT_AVATAR)));
     }
     @Test
     @Transactional
@@ -225,7 +241,9 @@ public class SpecialiteResourceIT {
             .libelle(UPDATED_LIBELLE)
             .code(UPDATED_CODE)
             .havingGenre(UPDATED_HAVING_GENRE)
-            .deleted(UPDATED_DELETED);
+            .deleted(UPDATED_DELETED)
+            .avatar(UPDATED_AVATAR)
+            .avatarContentType(UPDATED_AVATAR_CONTENT_TYPE);
 
         restSpecialiteMockMvc.perform(put("/api/specialites")
             .contentType(MediaType.APPLICATION_JSON)
@@ -240,6 +258,8 @@ public class SpecialiteResourceIT {
         assertThat(testSpecialite.getCode()).isEqualTo(UPDATED_CODE);
         assertThat(testSpecialite.isHavingGenre()).isEqualTo(UPDATED_HAVING_GENRE);
         assertThat(testSpecialite.isDeleted()).isEqualTo(UPDATED_DELETED);
+        assertThat(testSpecialite.getAvatar()).isEqualTo(UPDATED_AVATAR);
+        assertThat(testSpecialite.getAvatarContentType()).isEqualTo(UPDATED_AVATAR_CONTENT_TYPE);
     }
 
     @Test
